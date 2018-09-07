@@ -1,0 +1,13 @@
+C:\Users\thoma\Documents\Deta 0.1\Deta 0.1\bin\Debug\Deta 0.1.exe.config
+C:\Users\thoma\Documents\Deta 0.1\Deta 0.1\bin\Debug\Deta 0.1.exe
+C:\Users\thoma\Documents\Deta 0.1\Deta 0.1\bin\Debug\Deta 0.1.pdb
+C:\Users\thoma\Documents\Deta 0.1\Deta 0.1\obj\Debug\Deta 0.1.csprojAssemblyReference.cache
+C:\Users\thoma\Documents\Deta 0.1\Deta 0.1\obj\Debug\Deta_0._1.Form1.resources
+C:\Users\thoma\Documents\Deta 0.1\Deta 0.1\obj\Debug\Deta_0._1.Properties.Resources.resources
+C:\Users\thoma\Documents\Deta 0.1\Deta 0.1\obj\Debug\Deta 0.1.csproj.GenerateResource.cache
+C:\Users\thoma\Documents\Deta 0.1\Deta 0.1\obj\Debug\Deta 0.1.csproj.CoreCompileInputs.cache
+C:\Users\thoma\Documents\Deta 0.1\Deta 0.1\obj\Debug\Deta 0.1.exe
+C:\Users\thoma\Documents\Deta 0.1\Deta 0.1\obj\Debug\Deta 0.1.pdb
+C:\Users\thoma\Documents\Deta 0.1\Deta 0.1\bin\Debug\WindowsInput.dll
+C:\Users\thoma\Documents\Deta 0.1\Deta 0.1\bin\Debug\WindowsInput.xml
+C:\Users\thoma\Documents\Deta 0.1\Deta 0.1\obj\Debug\Deta 0.1.csproj.CopyComplete
