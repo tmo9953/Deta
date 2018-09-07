@@ -389,6 +389,24 @@ namespace Deta
                 Output = "Oi! No traps allowed.";
             }
 
+            if (Input.IndexOf("lewd") != -1)
+            {
+                if (Input.IndexOf("loli") != -1)
+                {
+                    Output = "call the fucking police";
+                    var r = new Random();
+                    if (r.Next(2) == 1)
+                    {
+                        Output = "Master I'm sending your location to FBI ^^";
+                    }
+                }
+                else
+                {
+                    Output = "no";
+                }
+                
+            }
+
             //second iterations
 
             if (previous_messages[0] == "lol")
