@@ -181,8 +181,18 @@ namespace Deta
                 
                 }         
             
-
             //End of Functions
+
+            //neural net testing
+            if(Input.Substring(0,2) == "nn")
+            {
+                Input = Input.Substring(2);
+                var mod = new Neural_Network.model(new int[] { 2,3,10,20,3,2 });
+                var i1 = float.Parse(Input.Substring(0,3));
+                var i2 = float.Parse(Input.Substring(3, 3));
+                var o = mod.run(new float[] { i1, i2 });
+                Output = o[0].ToString() + "   " + o[1].ToString();
+            }
 
             //End of your stuff
 
@@ -191,7 +201,7 @@ namespace Deta
             while (i > 0)
             {
                 previous_messages[i] = previous_messages[i - 1];
-                Console.WriteLine(previous_messages[i]);
+                Console.Write(previous_messages[i] + '\r');
                 i -= 1;
             }
 
