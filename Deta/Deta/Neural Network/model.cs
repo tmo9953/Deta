@@ -10,12 +10,15 @@ namespace Deta.Neural_Network
     {
         //coco butter
         public layer[] lays;
-
+        public string name;
+        public Random ran;
 
         //initalisation
         //<param name = "sizes" > Length of the array is amount of layers in your model and each int is the amount of neurons in that specific layer</param>
-        public model(int[] sizes)
+        public model(int[] sizes, string _name, int seed)
         {
+            ran = new Random();
+            name = _name;
             //size is a array of the layer sizes
             lays = new layer[sizes.Length];
             var i = 1;
@@ -35,7 +38,7 @@ namespace Deta.Neural_Network
             while(i < lays[0].neu.Length)
             {
                 lays[0].neu[i].input = inputs[i];
-                Console.WriteLine("network recieved: " + inputs[i]);
+                //Console.WriteLine("network recieved: " + inputs[i]);
                 i++;
             }
 
@@ -55,20 +58,61 @@ namespace Deta.Neural_Network
         }
 
         //<summary>Run with training/summary>
-        public float[] train(float[] inputs,float[] outputs)
+        public void train(float[] inputs,float[] outputs, int cycles, float learning_rate)
+        {
+            for (int r = 0; r < cycles; r++)
+            {
+                var cost = get_cost(inputs, outputs);
+                var restore = lays;
+
+
+                for (var u = 1; u < lays.Length; u++)
+                {
+                    for (var t = 0; t < lays[u].neu.Length; t++)
+                    {
+                        for (int e = 0; e < lays[u].neu[t].weights.Length; e++)
+                        {
+                            lays[u].neu[t].weights[e] += (float)(Math.Sin(ran.Next()) * learning_rate * cost);
+                        }
+                        lays[u].neu[t].bias += (float)(Math.Sin(ran.Next()) * learning_rate * cost);
+                    }
+                }
+
+                var w = Math.Abs(get_cost(inputs, outputs));
+                if (w > Math.Abs(cost))
+                {
+                    //Console.WriteLine("FAILED  with a cost of: " + w.ToString());
+                    lays = restore;
+                }
+                else
+                {
+                    try
+                    {
+                        Console.WriteLine("SUCCESS with a cost of: " + w.ToString().Substring(0, 6) + "    " + cost);
+                    }
+                    catch
+                    {
+
+                    }
+                }
+            }
+        }
+
+        public float get_cost(float[] inputs, float[] outputs)
         {
             var getting = run(inputs);
             //get cost
             var cost = 0f;
             var i = 0;
-            while(i < outputs.Length)
+            while (i < outputs.Length)
             {
-                var t = (getting[i] - outputs[i]);
-                cost += t*t;
+                var t =  getting[i] - outputs[i];
+                cost += t * t;
                 i++;
             }
-            return null;
+            return cost;
         }
+
 
 
     }

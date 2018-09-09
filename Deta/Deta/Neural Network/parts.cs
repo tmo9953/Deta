@@ -8,19 +8,21 @@ namespace Deta.Neural_Network
 {
     class neuron
     {
-        float[] weights;
+        public float[] weights;
+        public float bias;
         public float input;
 
         public neuron(int pre_layer_amount)
         {
             weights = new float[pre_layer_amount];
             var i = 0;
-            var r = new Random();
+            var r = new Random(69);
             while(i < weights.Length)
             {
-                weights[i] = r.Next(5000)/5000f;
+                weights[i] = (r.Next(5000)/2500f)-1;
                 i++;
             }
+            bias = (r.Next(5000) / 2500f)-1;
         }
 
 
@@ -46,7 +48,7 @@ namespace Deta.Neural_Network
                 op += u*weights[i];
                 i++;
             }
-            op = sigmoid(op);
+            op = sigmoid(op+bias);
 
             return op;
         }
