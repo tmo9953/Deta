@@ -12,9 +12,18 @@ namespace Deta
 {
     public partial class Form1 : Form
     {
+        const string ver = "0.0.8.1";
+
+
         public Form1()
         {
             InitializeComponent();
+            var t = new System.Net.WebClient().DownloadString("http://clam.gq/deta/main/ver.txt");
+            if (t != ver)
+            {
+                //program is out of date
+                System.Diagnostics.Process.Start("http://clam.gq/deta/?v=out");
+            }
         }
 
 
