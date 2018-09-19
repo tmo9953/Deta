@@ -7,7 +7,7 @@
     <ProjectGuid>{3603F45A-765B-4294-AEEA-A505C6C06DF9}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Deta_0._1</RootNamespace>
-    <AssemblyName>Deta 0.1</AssemblyName>
+    <AssemblyName>Deta</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
