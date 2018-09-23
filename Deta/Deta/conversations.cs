@@ -26,6 +26,11 @@ namespace Deta
                 Output = "Hey, Sexy";
             }
 
+            if (Input == "hey, sexy")
+            {
+                Output = "Master, you're making me blush!";
+            }
+
             if (Input == "hello")
             {
                 Output = "Hey, Sexy. You look good today.";
@@ -102,11 +107,26 @@ namespace Deta
                 Output = "Hi Master!";
             }
 
+            if (Input == "hi deta")
+            {
+                Output = "Hey!";
+            }
+             
+            if (Input == "hi hi")
+            {
+                Output = "Hey, Master!";
+            }
+
             //Slang 
 
             if (Input == "yo")
             {
                 Output = "Sup!";
+            }
+
+            if (Input == "sup")
+            {
+                Output = "Hey, Master.";
             }
 
             if (Input == "howdy")
