@@ -10,7 +10,7 @@ namespace Deta
     class Responses
     {
         public static string[] previous_messages = new string[20];
-        public static Neural_Network.model mod = new Neural_Network.model(new int[] { 2, 3, 10, 20, 3, 2 }, "test", 52);
+        public static Neural_Network.model mod = new Neural_Network.model(new int[] { 2, 4, 2 }, "test", 52);
 
         public static string get(string Input)
         {
@@ -203,7 +203,7 @@ namespace Deta
                 var i2 = float.Parse(Input.Substring(3, 3));
                 var i3 = float.Parse(Input.Substring(6, 3));
                 var i4 = float.Parse(Input.Substring(9, 3));
-                mod.train(new float[] { i1, i2 }, new float[] { i3, i4 }, 1000, 0.05f);
+                mod.train(new float[] { i1, i2 }, new float[] { i3, i4 }, 100000, 0.05f);
                 Output = "trained!";
             }
 
