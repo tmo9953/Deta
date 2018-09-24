@@ -11,19 +11,11 @@ C:\Users\thoma\Documents\GitHub\Deta\Deta 0.1\Deta 0.1\obj\Debug\Deta.csproj.Cor
 C:\Users\thoma\Documents\GitHub\Deta\Deta 0.1\Deta 0.1\obj\Debug\Deta.csproj.CopyComplete
 C:\Users\thoma\Documents\GitHub\Deta\Deta 0.1\Deta 0.1\obj\Debug\Deta 0.1.exe
 C:\Users\thoma\Documents\GitHub\Deta\Deta 0.1\Deta 0.1\obj\Debug\Deta 0.1.pdb
-C:\Users\sourb\Documents\GitHub\Deta\Deta\Deta\bin\Debug\Deta 0.1.exe.config
-C:\Users\sourb\Documents\GitHub\Deta\Deta\Deta\bin\Debug\Deta 0.1.exe
-C:\Users\sourb\Documents\GitHub\Deta\Deta\Deta\bin\Debug\Deta 0.1.pdb
 C:\Users\sourb\Documents\GitHub\Deta\Deta\Deta\bin\Debug\WindowsInput.dll
 C:\Users\sourb\Documents\GitHub\Deta\Deta\Deta\bin\Debug\WindowsInput.xml
-C:\Users\sourb\Documents\GitHub\Deta\Deta\Deta\obj\Debug\Deta.csprojAssemblyReference.cache
 C:\Users\sourb\Documents\GitHub\Deta\Deta\Deta\obj\Debug\Deta.Form1.resources
 C:\Users\sourb\Documents\GitHub\Deta\Deta\Deta\obj\Debug\Deta_0._1.Properties.Resources.resources
 C:\Users\sourb\Documents\GitHub\Deta\Deta\Deta\obj\Debug\Deta.csproj.GenerateResource.cache
-C:\Users\sourb\Documents\GitHub\Deta\Deta\Deta\obj\Debug\Deta.csproj.CoreCompileInputs.cache
-C:\Users\sourb\Documents\GitHub\Deta\Deta\Deta\obj\Debug\Deta.csproj.CopyComplete
-C:\Users\sourb\Documents\GitHub\Deta\Deta\Deta\obj\Debug\Deta 0.1.exe
-C:\Users\sourb\Documents\GitHub\Deta\Deta\Deta\obj\Debug\Deta 0.1.pdb
 C:\Users\thoma\Documents\GitHub\Deta\Deta\Deta\bin\Debug\WindowsInput.dll
 C:\Users\thoma\Documents\GitHub\Deta\Deta\Deta\bin\Debug\WindowsInput.xml
 C:\Users\thoma\Documents\GitHub\Deta\Deta\Deta\obj\Debug\Deta.csprojAssemblyReference.cache
@@ -37,3 +29,11 @@ C:\Users\thoma\Documents\GitHub\Deta\Deta\Deta\bin\Debug\Deta.exe
 C:\Users\thoma\Documents\GitHub\Deta\Deta\Deta\bin\Debug\Deta.pdb
 C:\Users\thoma\Documents\GitHub\Deta\Deta\Deta\obj\Debug\Deta.exe
 C:\Users\thoma\Documents\GitHub\Deta\Deta\Deta\obj\Debug\Deta.pdb
+C:\Users\sourb\Documents\GitHub\Deta\Deta\Deta\bin\Debug\Deta.exe.config
+C:\Users\sourb\Documents\GitHub\Deta\Deta\Deta\bin\Debug\Deta.exe
+C:\Users\sourb\Documents\GitHub\Deta\Deta\Deta\bin\Debug\Deta.pdb
+C:\Users\sourb\Documents\GitHub\Deta\Deta\Deta\obj\Debug\Deta.exe
+C:\Users\sourb\Documents\GitHub\Deta\Deta\Deta\obj\Debug\Deta.pdb
+C:\Users\sourb\Documents\GitHub\Deta\Deta\Deta\obj\Debug\Deta.csprojAssemblyReference.cache
+C:\Users\sourb\Documents\GitHub\Deta\Deta\Deta\obj\Debug\Deta.csproj.CoreCompileInputs.cache
+C:\Users\sourb\Documents\GitHub\Deta\Deta\Deta\obj\Debug\Deta.csproj.CopyComplete
