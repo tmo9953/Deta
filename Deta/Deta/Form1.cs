@@ -168,7 +168,7 @@ namespace Deta
 
             var b = @"c.bat";
             var file = new System.IO.StreamWriter(b);
-            file.Write("@echo off \r\n C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\msbuild.exe s\\Deta.sln \r\n  xcopy /s s\\Deta\\bin\\Debug\\Deta.exe Deta.exe \r\n start Deta.exe \r\n exit");
+            file.Write("@echo off \r\n C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\msbuild.exe s\\Deta.sln \r\n  xcopy /s s\\Deta\\bin\\Debug\\Deta.exe Deta.exe /Y \r\n start Deta.exe \r\n exit");
             file.Close();
             System.Diagnostics.Process.Start(b);
             this.Close();
