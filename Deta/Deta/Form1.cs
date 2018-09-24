@@ -14,17 +14,18 @@ namespace Deta
     {
         const string ver = "0.0.8.1";
         public static string envi = "native";
+        const string domain = "clam.gq";
         dynamic d = null;
 
         public Form1()
         {
             //initialise
             InitializeComponent();
-            var t = new System.Net.WebClient().DownloadString("http://clam.gq/deta/main/ver.txt");
+            var t = new System.Net.WebClient().DownloadString("http://" + domain + "/deta/main/ver.txt");
             if (t != ver)
             {
                 //program is out of date
-                System.Diagnostics.Process.Start("http://clam.gq/deta/?v=out");
+                System.Diagnostics.Process.Start("http://"+domain+"/deta/?v=out");
             }
         }
 
@@ -35,10 +36,12 @@ namespace Deta
             var In = TextBox1.Text;
 
             var outo = "error";
+
             if (In.Length >= 6 && In.ToLower().Substring(0, 6) == "start ")
             {
                 //change environment
                 var new_env = In.Substring(6);
+                var restore = d;
                 d = System.Reflection.Assembly.GetExecutingAssembly().CreateInstance("Deta.addons." + new_env);
                 if (d != null)//check if installed
                 {
@@ -48,13 +51,44 @@ namespace Deta
                 else
                 {
                     outo = "Sorry, there is no such environment installed.";
+                    d = restore;
                 }
             }
             else
             {
                 if (envi == "native")
                 {
-                    outo = Responses.get(In);
+                    if (In.Length >= 8 && In.ToLower().Substring(0, 8) == "install ")
+                    {
+                        //install a new package
+                        var pkge = In.Substring(8);
+                        if(pkge.Length >= 4 && pkge.Substring(0,4) == "http")
+                        {
+                            //install from external source
+                            outo = "This package is from an exteranl source, it may not be safe to run";
+                        }
+                        else
+                        {
+                            //install from trusted source
+                            try
+                            {
+                                var data = new System.Net.WebClient().DownloadString("http://" + domain + "/deta/mods/" + pkge);
+                                Label4.Text = "installing...";
+                                var file = new System.IO.StreamWriter(@"mod\"+ pkge +".cs");
+                                file.Write(data);
+                                file.Close();
+                                outo = "installed " + pkge;
+                            }
+                            catch
+                            {
+                                outo = "'" + pkge +"' dose not exist";
+                            }
+                        }
+                    }
+                    else
+                    {
+                        outo = Responses.get(In);
+                    }
                 }
                 else
                 {
@@ -70,6 +104,7 @@ namespace Deta
                     }
                 }
             }
+            
             env.Text = "(" + envi + ")";
 
             //make new line if theres too much text
@@ -98,7 +133,7 @@ namespace Deta
             string get(string input);
         }
 
-        #region
+#region
         private void Button1_Click(object sender, EventArgs e)
         {
             central();
@@ -111,6 +146,6 @@ namespace Deta
                 central();
             }
         }
-        #endregion
+#endregion
     }
 }
