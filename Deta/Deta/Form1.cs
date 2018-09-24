@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
+using System.IO.Compression;
 
 namespace Deta
 {
@@ -16,6 +11,7 @@ namespace Deta
         public static string envi = "native";
         const string domain = "clam.gq";
         dynamic d = null;
+        public static string add_to_proj;
 
         public Form1()
         {
@@ -27,6 +23,20 @@ namespace Deta
                 //program is out of date
                 System.Diagnostics.Process.Start("http://"+domain+"/deta/?v=out");
             }
+            //delete stuff
+            if (File.Exists(@"c.bat"))
+            {
+                File.Delete(@"c.bat");
+            }
+            try
+            {
+                new DirectoryInfo(@"s").Delete(true);
+            }
+            catch
+            {
+
+            }
+
         }
 
 
@@ -77,12 +87,13 @@ namespace Deta
                                 var file = new System.IO.StreamWriter(@"mod\"+ pkge +".cs");
                                 file.Write(data);
                                 file.Close();
-                                outo = "installed " + pkge;
+                                
                             }
                             catch
                             {
                                 outo = "'" + pkge +"' dose not exist";
                             }
+                            upgrade();
                         }
                     }
                     else
@@ -133,7 +144,63 @@ namespace Deta
             string get(string input);
         }
 
-#region
+        public void upgrade()
+        {
+            string s = @"s";
+            if (!Directory.Exists(s))
+            {
+                Directory.CreateDirectory(s);
+            }
+            ZipFile.ExtractToDirectory(@"s.zip", s);
+
+            add_to_proj = "";
+            CopyDirectory(new DirectoryInfo(@"mod"), new DirectoryInfo(@"s\Deta\addons"));
+            Console.WriteLine(add_to_proj);
+            var pro = @"s\Deta\Deta.csproj";
+            var r = new System.IO.StreamReader(pro);
+            var t = r.ReadToEnd();
+            r.Close();
+            var w = new System.IO.StreamWriter(pro);
+            var q = t.IndexOf("<Compile Include=\"addons");
+            w.Write(t.Substring(0,q) + add_to_proj + t.Substring(q));
+            w.Close();
+
+
+            var b = @"c.bat";
+            var file = new System.IO.StreamWriter(b);
+            file.Write("@echo off \r\n C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\msbuild.exe s\\Deta.sln \r\n  xcopy /s s\\Deta\\bin\\Debug\\Deta.exe Deta.exe \r\n start Deta.exe \r\n exit");
+            file.Close();
+            System.Diagnostics.Process.Start(b);
+            this.Close();
+        }
+
+        private bool IsFileLocked(FileInfo file)
+        {
+            FileStream stream = null;
+
+            try
+            {
+                stream = file.Open(FileMode.Open, FileAccess.ReadWrite, FileShare.None);
+            }
+            catch (IOException)
+            {
+                //the file is unavailable because it is:
+                //still being written to
+                //or being processed by another thread
+                //or does not exist (has already been processed)
+                return true;
+            }
+            finally
+            {
+                if (stream != null)
+                    stream.Close();
+            }
+
+            //file is not locked
+            return false;
+        }
+
+        #region
         private void Button1_Click(object sender, EventArgs e)
         {
             central();
@@ -146,6 +213,36 @@ namespace Deta
                 central();
             }
         }
-#endregion
+        #endregion
+
+
+
+        static void CopyDirectory(DirectoryInfo source, DirectoryInfo destination)
+        {
+            if (!destination.Exists)
+            {
+                destination.Create();
+            }
+
+            // Copy all files.
+            FileInfo[] files = source.GetFiles();
+            foreach (FileInfo file in files)
+            {
+                file.CopyTo(Path.Combine(destination.FullName,
+                    file.Name));
+                add_to_proj += "<Compile Include=\"addons\\"+ file.Name + "\"/>";
+            }
+
+            // Process subdirectories.
+            DirectoryInfo[] dirs = source.GetDirectories();
+            foreach (DirectoryInfo dir in dirs)
+            {
+                // Get destination directory.
+                string destinationDir = Path.Combine(destination.FullName, dir.Name);
+
+                // Call CopyDirectory() recursively.
+                CopyDirectory(dir, new DirectoryInfo(destinationDir));
+            }
+        }
     }
 }
