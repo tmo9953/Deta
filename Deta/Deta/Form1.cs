@@ -47,6 +47,12 @@ namespace Deta
 
             var outo = "error";
 
+            if(In.ToLower() == "update")
+            {
+                upgrade();
+            }
+
+
             if (In.Length >= 6 && In.ToLower().Substring(0, 6) == "start ")
             {
                 //change environment
@@ -84,7 +90,7 @@ namespace Deta
                             {
                                 var data = new System.Net.WebClient().DownloadString("http://" + domain + "/deta/mods/" + pkge);
                                 Label4.Text = "installing...";
-                                var file = new System.IO.StreamWriter(@"mod\"+ pkge +".cs");
+                                var file = new System.IO.StreamWriter(@"mod\"+ pkge +".detmod");
                                 file.Write(data);
                                 file.Close();
                                 

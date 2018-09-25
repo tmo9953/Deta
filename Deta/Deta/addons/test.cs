@@ -1,12 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Deta.addons
+namespace Deta_0._1.addons
 {
-    class test : Form1.addon
+    class test
     {
-        public string get(string input)
-        {
-            return input;
-        }
     }
 }
