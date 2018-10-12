@@ -1,0 +1,18 @@
+using System;
+
+namespace Deta.addons
+{
+    class reverser : Form1.addon
+    {
+        public string get(string input)
+        {
+            var output = "";
+            var l = input.Length-1;
+            for(; l >= 0 ; l--)
+            {
+                output += input[l];
+            }
+            return output;
+        }
+    }
+}
