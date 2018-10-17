@@ -16,24 +16,23 @@ namespace Deta
 
             //Conversation Starters 
 
-            if (Input == "hi")
+            if (Input == "hi" 
+                || Input == "hi there" 
+                || Input == "hello")
             {
-                Output = "Hello";
-            }
-
-            if (Input == "hi there")
-            {
-                Output = "Hey, Sexy";
+                switch(new Random().Next(4))
+                {
+                    case 0: Output = "Hi";  break;
+                    case 1: Output = "Hello"; break;
+                    case 2: Output = "Hey, Sexy";  break;
+                    case 3: Output = "Hey, Sexy. You look very good today."; break;
+                }
+                
             }
 
             if (Input == "hey, sexy")
             {
                 Output = "Master, you're making me blush!";
-            }
-
-            if (Input == "hello")
-            {
-                Output = "Hey, Sexy. You look good today.";
             }
 
             if (Input == "how are you")

@@ -129,10 +129,10 @@ namespace Deta
             if (outo.Length > chars)
             {
                 var i = 0;
-                while(outo.Substring(chars+i,1) != " ")
+                while(outo[chars+i] != ' ')
                 {
                     i++;
-                    if(outo.Length < chars+i)
+                    if(outo.Length < chars+i+1)
                     {
                         goto A;
                     }

@@ -78,11 +78,14 @@ namespace Deta.Neural_Network
                     }
                 }
 
-                var w = Math.Abs(get_cost(inputs, outputs));
-                if (w > Math.Abs(cost))
+
+
+                var w = get_cost(inputs, outputs);
+                if (w > cost)
                 {
                     //Console.WriteLine("FAILED  with a cost of: " + w.ToString());
                     lays = restore;
+                    Console.WriteLine("FAILED");
                 }
                 else
                 {
@@ -92,7 +95,7 @@ namespace Deta.Neural_Network
                     }
                     catch
                     {
-
+                        
                     }
                 }
             }
