@@ -18,13 +18,15 @@ namespace Deta
 
             if (Input == "hi" 
                 || Input == "hi there" 
-                || Input == "hello")
+                || Input == "hello"
+                || Input == "hey")
             {
-                switch(new Random().Next(4))
+                switch(new Random().Next(5))
                 {
                     case 0: Output = "Hi";  break;
                     case 1: Output = "Hello"; break;
                     case 2: Output = "Hey, Sexy";  break;
+                    case 4: Output = "hi hi"; break;
                     case 3: Output = "Hey, Sexy. You look very good today."; break;
                 }
                 
@@ -48,11 +50,6 @@ namespace Deta
             if (Input == "how is your day going")
             {
                 Output = "Not too bad. As long as I can see you, everything is daijoubu";
-            }
-
-            if (Input == "hello")
-            {
-                Output = "Hey, Sexy";
             }
 
             if (Input == "long time no see")
@@ -143,10 +140,6 @@ namespace Deta
                 Output = "Hey, Master.";
             }
 
-            if (Input == "hey")
-            {
-                Output = "Hi hi";
-            }
 
             if (Input == "hiya")
             {
