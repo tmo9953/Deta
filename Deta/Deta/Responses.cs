@@ -26,31 +26,8 @@ namespace Deta
 
             }
 
-            //Grammar 
-
-            Input = Input.Trim();
-
-            Input = Input.Trim('?'); 
-
-            Input = Input.Trim(',');
-
-            Input = Input.Trim('.');
-
-            Input = Input.Trim(new char[] {(char) 39 });
-
-            Input = Input.Trim('!');
-
-            var poopy = Input.IndexOf("whats");
-            if(poopy != -1)
-            {
-                Input = Input.Substring(0, poopy) + "what is" + Input.Substring(poopy+5);
-            }
-
-            poopy = Input.IndexOf("what's");
-            if (poopy != -1)
-            {
-                Input = Input.Substring(0, poopy) + "what is" + Input.Substring(poopy + 6);
-            }
+            //get thing here
+            Input = simplifier.run(Input);
 
             string Output = Conversations.get(Input, previous_messages);
 
