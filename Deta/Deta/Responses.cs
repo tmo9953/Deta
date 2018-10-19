@@ -42,15 +42,31 @@ namespace Deta
 
             var poopy = Input.IndexOf("whats");
             if(poopy != -1)
-            {
                 Input = Input.Substring(0, poopy) + "what is" + Input.Substring(poopy+5);
-            }
 
             poopy = Input.IndexOf("what's");
             if (poopy != -1)
-            {
                 Input = Input.Substring(0, poopy) + "what is" + Input.Substring(poopy + 6);
-            }
+
+            poopy = Input.IndexOf("it's");
+            if (poopy != -1)
+                Input = Input.Substring(0, poopy) + "it is" + Input.Substring(poopy + 4);
+
+            poopy = Input.IndexOf("its");
+            if (poopy != -1)
+                Input = Input.Substring(0, poopy) + "it is" + Input.Substring(poopy + 3);
+
+            poopy = Input.IndexOf("let's");
+            if (poopy != -1)
+                Input = Input.Substring(0, poopy) + "let us" + Input.Substring(poopy + 5);
+
+            poopy = Input.IndexOf("lets");
+            if (poopy != -1)
+                Input = Input.Substring(0, poopy) + "let us" + Input.Substring(poopy + 4);
+
+            poopy = Input.IndexOf("lets");
+            if (poopy != -1)
+                Input = Input.Substring(0, poopy) + "let us" + Input.Substring(poopy + 4);
 
             string Output = Conversations.get(Input, previous_messages);
 
@@ -139,6 +155,28 @@ namespace Deta
             if( Input == "open calculator" ){
                 Output = "Here you go, Master! ^^";
                 System.Diagnostics.Process.Start(@"C:\Windows\SysWOW64\calc.exe");
+            }
+
+            if (Input.IndexOf("open") != -1)
+            {
+                Input = Input.Substring(5);
+
+                var folder = Path.Combine(Environment.GetFolderPath(
+                Environment.SpecialFolder.ApplicationData) + @"\Microsoft\Windows\Start Menu");
+
+                var t = Directory.GetFiles(folder, Input + "*", SearchOption.AllDirectories);
+
+                if (t.Length != 0)
+                {
+                    Process.Start(t[0]);
+                    Output = "Here you go, Master! ^^";
+                }
+                else
+                {
+                    Output = "Sorry Master, I can only open apps from the start menu.";
+                }
+
+                
             }
 
             //Cooking_Chef_AI
@@ -249,7 +287,7 @@ namespace Deta
                         var ty = new WebClient();
 
 
-                        var w = ty.DownloadString("http://clam.gq/deta/?m=" + u);
+                        //var w = ty.DownloadString("http://clam.gq/deta/?m=" + u);
                         if (data.Length > 15)
                         {
                             data = data.Substring(data.Length - 15);

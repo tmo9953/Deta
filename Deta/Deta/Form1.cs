@@ -20,8 +20,8 @@ namespace Deta
             InitializeComponent();
 
 
-            var t = new d()._get("http://" + domain + "/deta/main/ver.txt");
-
+            //var t = new d()._get("http://" + domain + "/deta/main/ver.txt");
+            var t = "Connection Error";
 
 
 

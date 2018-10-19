@@ -362,6 +362,11 @@ namespace Deta
                 Output = "Take me to Mars. Maybe beyond. Who knows.";
             }
 
+            if (Input == "let us go dating")
+            {
+                Output = "Sure, Let's go!";
+            }
+
             //Miscellaneous 
 
             if (Input == "poopy")
