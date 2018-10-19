@@ -40,8 +40,8 @@ namespace Deta
 
             foreach(string e in q)
             {
-                var from = e.Substring(e.IndexOf("|") + 1);
-                var to = e.Substring(0,e.IndexOf("|"));
+                var to = e.Substring(e.IndexOf("|") + 1);
+                var from = e.Substring(0,e.IndexOf("|"));
 
                 var w = input.IndexOf(from);
                 if (w != -1)
