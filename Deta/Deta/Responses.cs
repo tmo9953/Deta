@@ -88,7 +88,7 @@ namespace Deta
                 Input = Input.Substring(5);
                 { 
 
-                    var n = new System.Net.WebClient().DownloadString(youtube_music + Input);
+                    var n = new d()._get(youtube_music + Input);
 
                     var location = n.IndexOf("data-video-ids");
 
@@ -150,7 +150,7 @@ namespace Deta
             {
 
                 Input = Input.Substring(11);
-                var n = new System.Net.WebClient().DownloadString(recipe_google + Input);
+                var n = new d()._get(recipe_google + Input);
 
                 var index = n.IndexOf("img-responsive main-icon");
 
@@ -177,7 +177,7 @@ namespace Deta
 
                 Input = Input.Substring(9);
 
-                    var n = new System.Net.WebClient().DownloadString(anime_play + Input);
+                    var n = new d()._get(anime_play + Input);
 
                 
                 }         

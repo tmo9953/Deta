@@ -2,6 +2,7 @@
 using System.IO;
 using System.Windows.Forms;
 using System.IO.Compression;
+using System.Net;
 
 namespace Deta
 {
@@ -17,8 +18,15 @@ namespace Deta
         {
             //initialise
             InitializeComponent();
-            var t = new System.Net.WebClient().DownloadString("http://" + domain + "/deta/main/ver.txt");
-            if (t != ver)
+
+
+            var t = new d()._get("http://" + domain + "/deta/main/ver.txt");
+
+
+
+
+
+            if (t != ver && t != "Connection Error")
             {
                 //program is out of date
                 System.Diagnostics.Process.Start("http://"+domain+"/deta/?v=out");
@@ -251,4 +259,40 @@ namespace Deta
             }
         }
     }
+
+    public class d : WebClient
+    {
+        public string _get(string w_)
+            {
+            WebClient myClient = new WebClient();
+
+            WebRequest w = base.GetWebRequest(new Uri(w_));
+            w.Timeout = 2000;
+
+            string ret = "retreval error";
+            try
+            {
+                var response = w.GetResponse();
+
+                // The stream data is used here.  
+
+                // convert stream to string
+                StreamReader reader = new StreamReader(response.GetResponseStream());
+                ret = reader.ReadToEnd();
+
+                response.Close();
+            }
+            catch
+            {
+                ret = "Connection Error";
+            }
+
+            return ret;
+        }
+    }
+
+
+
+
+
 }
