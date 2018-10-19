@@ -26,6 +26,7 @@ namespace Deta
 
             }
 
+<<<<<<< HEAD
             //Grammar 
 
             Input = Input.Trim();
@@ -67,6 +68,10 @@ namespace Deta
             poopy = Input.IndexOf("lets");
             if (poopy != -1)
                 Input = Input.Substring(0, poopy) + "let us" + Input.Substring(poopy + 4);
+=======
+            //get thing here
+            Input = simplifier.run(Input);
+>>>>>>> e6ff958b69b35f77bb125c35a173811337eb0f1b
 
             string Output = Conversations.get(Input, previous_messages);
 
