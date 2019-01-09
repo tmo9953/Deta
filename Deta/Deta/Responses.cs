@@ -222,7 +222,24 @@ namespace Deta
                     var n = new d()._get(anime_play + Input);
 
                 
-                }         
+                }  
+            
+
+            //turn on thing
+
+            if(Input.Length > 4 && Input.Substring(0,4) == "turn")
+            {
+                Input = Input.Substring(5);
+                var n = "";
+                if (Input.Substring(2) == "on")
+                    n = new d()._get(@"http://192.168.0.110/?e=1&v=" + int.Parse(Input[0].ToString()));
+                else
+                    n = new d()._get(@"http://192.168.0.110/?e=0&v=" + int.Parse(Input[0].ToString()));
+                if (n == Input)
+                    Output = "ok";
+                else
+                    Output = "error";
+            }
             
             //End of Functions
 
