@@ -120,10 +120,6 @@ namespace Deta
 
                     System.Threading.Thread.Sleep(2000);
 
-                    InputSimulator sim = new InputSimulator();
-
-                    sim.Keyboard.ModifiedKeyStroke(VirtualKeyCode.LWIN, VirtualKeyCode.VK_D);
-
                 }
 
                 Output = "Ok master ^^";
@@ -182,6 +178,12 @@ namespace Deta
 
                 
             }
+            //exit
+
+            Form1.close = (Input == "exit" || Input == "leave" || Input == "close");
+
+
+
 
             //Cooking_Chef_AI
 
@@ -232,40 +234,42 @@ namespace Deta
                 Input = Input.Substring(5);
                 var n = "";
                 if (Input.Substring(2) == "on")
-                    n = new d()._get(@"http://192.168.0.110/?e=1&v=" + int.Parse(Input[0].ToString()));
+                    n = new d()._get(@"http://192.168.0.201/?e=1&v=" + int.Parse(Input[0].ToString()));
                 else
-                    n = new d()._get(@"http://192.168.0.110/?e=0&v=" + int.Parse(Input[0].ToString()));
+                    n = new d()._get(@"http://192.168.0.201/?e=0&v=" + int.Parse(Input[0].ToString()));
                 if (n == Input)
                     Output = "ok";
                 else
                     Output = "error";
             }
-            
+
             //End of Functions
 
             //neural net testing
-            if(Input.Substring(0,2) == "nn")
+            if (Input.Length > 2)
             {
-                Input = Input.Substring(2);
-                
-                var i1 = float.Parse(Input.Substring(0,3));
-                var i2 = float.Parse(Input.Substring(3, 3));
-                var o = mod.run(new float[] { i1, i2 });
-                Output = o[0].ToString() + "   " + o[1].ToString();
+                if (Input.Substring(0, 2) == "nn")
+                {
+                    Input = Input.Substring(2);
+
+                    var i1 = float.Parse(Input.Substring(0, 3));
+                    var i2 = float.Parse(Input.Substring(3, 3));
+                    var o = mod.run(new float[] { i1, i2 });
+                    Output = o[0].ToString() + "   " + o[1].ToString();
+                }
+
+                if (Input.Substring(0, 2) == "tr")
+                {
+                    Input = Input.Substring(2);
+
+                    var i1 = float.Parse(Input.Substring(0, 3));
+                    var i2 = float.Parse(Input.Substring(3, 3));
+                    var i3 = float.Parse(Input.Substring(6, 3));
+                    var i4 = float.Parse(Input.Substring(9, 3));
+                    mod.train(new float[] { i1, i2 }, new float[] { i3, i4 }, 100000, 0.05f);
+                    Output = "trained!";
+                }
             }
-
-            if (Input.Substring(0, 2) == "tr")
-            {
-                Input = Input.Substring(2);
-
-                var i1 = float.Parse(Input.Substring(0, 3));
-                var i2 = float.Parse(Input.Substring(3, 3));
-                var i3 = float.Parse(Input.Substring(6, 3));
-                var i4 = float.Parse(Input.Substring(9, 3));
-                mod.train(new float[] { i1, i2 }, new float[] { i3, i4 }, 100000, 0.05f);
-                Output = "trained!";
-            }
-
             //End of your stuff
 
             var i = 19;

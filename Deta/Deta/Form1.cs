@@ -13,6 +13,7 @@ namespace Deta
         const string domain = "clam.gq";
         dynamic d = null;
         public static string add_to_proj;
+        public static bool close = false;
 
         public Form1()
         {
@@ -150,6 +151,8 @@ namespace Deta
             //display
             A:
             Label4.Text = outo;
+            if(close)
+                this.Close();
         }
 
 
