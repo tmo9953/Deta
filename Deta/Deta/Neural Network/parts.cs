@@ -89,4 +89,17 @@ namespace Deta.Neural_Network
 
     }
 
+
+    class data_set
+    {
+        public float[] inputs;
+        public float[] outputs;
+
+        public data_set(float[] _inputs, float[] _outputs)
+        {
+            inputs = _inputs;
+            outputs = _outputs;
+        }
+    }
+
 }

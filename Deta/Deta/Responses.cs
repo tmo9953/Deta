@@ -4,13 +4,14 @@ using System.IO;
 using System.Net;
 using WindowsInput.Native;
 using WindowsInput;
+using System.Linq;
 
 namespace Deta
 {
     class Responses
     {
         public static string[] previous_messages = new string[20];
-        public static Neural_Network.model mod = new Neural_Network.model(new int[] { 2, 4, 2 }, "test", 52);
+        public static Neural_Network.model mod = new Neural_Network.model(new int[] { 1,3,4,1 }, "test", 52);
 
         public static string get(string Input)
         {
@@ -251,23 +252,57 @@ namespace Deta
                 if (Input.Substring(0, 2) == "nn")
                 {
                     Input = Input.Substring(2);
+                    var i0 = new float[Input.Count(f => f == ' ')+1];
 
-                    var i1 = float.Parse(Input.Substring(0, 3));
-                    var i2 = float.Parse(Input.Substring(3, 3));
-                    var o = mod.run(new float[] { i1, i2 });
-                    Output = o[0].ToString() + "   " + o[1].ToString();
+                    try{
+                        for(int os = 0; os < i0.Length; os++)
+                        {
+                            
+                            i0[os] = float.Parse(Input.Substring(0, 3));
+                            if(os < i0.Length-1)
+                                Input = Input.Substring(4);
+                        }
+                    }
+                    catch
+                    {
+                        goto e;
+                    }
+                        var o = mod.run(i0);
+                    Output = "";
+                    foreach (float s in o)
+                    {
+                        Output += s.ToString() + "   ";
+                    }
+                    e: Output += "!";
                 }
-
-                if (Input.Substring(0, 2) == "tr")
+                else
                 {
-                    Input = Input.Substring(2);
+                    if (Input.Substring(0, 2) == "tr")
+                    {
+                        try
+                        {
+                            Input = Input.Substring(2);
 
-                    var i1 = float.Parse(Input.Substring(0, 3));
-                    var i2 = float.Parse(Input.Substring(3, 3));
-                    var i3 = float.Parse(Input.Substring(6, 3));
-                    var i4 = float.Parse(Input.Substring(9, 3));
-                    mod.train(new float[] { i1, i2 }, new float[] { i3, i4 }, 100000, 0.05f);
-                    Output = "trained!";
+                            /*var i1 = float.Parse(Input.Substring(0, 3));
+                            var i2 = float.Parse(Input.Substring(3, 3));
+                            var i3 = float.Parse(Input.Substring(6, 3));
+                            var i4 = float.Parse(Input.Substring(9, 3));*/
+                            mod.train(new Neural_Network.data_set[] 
+                            {
+                                //new Neural_Network.data_set(new float[] { i1, i2 }, new float[] { i3, i4 }),
+                                new Neural_Network.data_set(new float[] { 0.1f}, new float[] { 0.5f }),
+                                new Neural_Network.data_set(new float[] { 0.2f}, new float[] { 0.4f }),
+                                new Neural_Network.data_set(new float[] { 0.3f}, new float[] { 0.3f }),
+                                new Neural_Network.data_set(new float[] { 0.4f}, new float[] { 0.2f }),
+                                new Neural_Network.data_set(new float[] { 0.5f}, new float[] { 0.1f }),
+                            }, 100000, 2f);
+                            Output = "trained!";
+                        }
+                        catch
+                        {
+                            Output = "error";
+                        }
+                    }
                 }
             }
             //End of your stuff

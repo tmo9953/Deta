@@ -37,7 +37,10 @@ namespace Deta.Neural_Network
             var i = 0;
             while(i < lays[0].neu.Length)
             {
-                lays[0].neu[i].input = inputs[i];
+                if(i < inputs.Length)
+                    lays[0].neu[i].input = inputs[i];
+                else
+                    lays[0].neu[i].input = 0f;
                 //Console.WriteLine("network recieved: " + inputs[i]);
                 i++;
             }
@@ -45,11 +48,12 @@ namespace Deta.Neural_Network
             //get outputs
             var r = lays[lays.Length - 1].neu.Length;//total amount of outputs
             var op = new float[r];
+            var output_layer = lays.Length - 1;
 
             i = 0;
             while(i < r)
             {
-                op[i] = lays[r].neu[i].get(lays,r);
+                op[i] = lays[output_layer].neu[i].get(lays, output_layer);
                 i++;
             }
 
@@ -58,46 +62,53 @@ namespace Deta.Neural_Network
         }
 
         //<summary>Run with training/summary>
-        public void train(float[] inputs,float[] outputs, int cycles, float learning_rate)
+        public void train(data_set[] training_data, int cycles, float learning_rate)
         {
+            
             for (int r = 0; r < cycles; r++)
             {
-                var cost = get_cost(inputs, outputs);
-                var restore = lays;
+                
+                
 
 
                 for (var u = 1; u < lays.Length; u++)
                 {
                     for (var t = 0; t < lays[u].neu.Length; t++)
                     {
-                        for (int e = 0; e < lays[u].neu[t].weights.Length; e++)
+                        foreach (data_set d in training_data)
                         {
-                            lays[u].neu[t].weights[e] += (float)(Math.Sin(ran.Next()) * learning_rate * cost);
+                            var cost = get_cost(d.inputs, d.outputs);
+                            var res_w = lays[u].neu[t].weights;
+                            var res_b = lays[u].neu[t].bias;
+
+
+                            for (int e = 0; e < lays[u].neu[t].weights.Length; e++)
+                            {
+                                lays[u].neu[t].weights[e] += (float)(Math.Sin(ran.Next()) * learning_rate * cost);
+                            }
+                            lays[u].neu[t].bias += (float)(Math.Sin(ran.Next()) * learning_rate * cost);
+
+
+
+                            var w = get_cost(d.inputs, d.outputs);
+                            if (w > cost)
+                            {
+                                //Console.WriteLine("FAILED  with a cost of: " + w.ToString());
+                                lays[u].neu[t].bias = res_b;
+                                lays[u].neu[t].weights = res_w;
+                                //Console.WriteLine("FAILED");
+                            }
+                            else
+                            {
+                                //Console.WriteLine("SUCCESS with a cost of: " + cost);
+                            }
                         }
-                        lays[u].neu[t].bias += (float)(Math.Sin(ran.Next()) * learning_rate * cost);
                     }
                 }
 
 
 
-                var w = get_cost(inputs, outputs);
-                if (w > cost)
-                {
-                    //Console.WriteLine("FAILED  with a cost of: " + w.ToString());
-                    lays = restore;
-                    Console.WriteLine("FAILED");
-                }
-                else
-                {
-                    try
-                    {
-                        Console.WriteLine("SUCCESS with a cost of: " + w.ToString().Substring(0, 6) + "    " + cost);
-                    }
-                    catch
-                    {
-                        
-                    }
-                }
+
             }
         }
 
@@ -109,8 +120,8 @@ namespace Deta.Neural_Network
             var i = 0;
             while (i < outputs.Length)
             {
-                var t =  getting[i] - outputs[i];
-                cost += t * t;
+                var t = outputs[i] - getting[i];
+                cost += (t * t)/2;
                 i++;
             }
             return cost;
