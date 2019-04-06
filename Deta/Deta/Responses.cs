@@ -367,7 +367,7 @@ namespace Deta
 
 
 
-            return Output;
+            return "bruh";
         }
 
         private static string Format(object now, string v)
