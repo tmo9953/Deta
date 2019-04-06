@@ -115,9 +115,9 @@ namespace Deta
 
             //Slang 
 
-            if (Input == "yo")
+            if (Input.IndexOf("gay") != -1)
             {
-                Output = "Sup!";
+                Output = "bruh";
             }
 
             if (Input == "sup")

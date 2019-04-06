@@ -364,10 +364,13 @@ namespace Deta
                 }
             }
 
+            if (Output == "bruh")
+            {
+                System.Media.SoundPlayer player = new System.Media.SoundPlayer(@"Bruh Sound Effect.wav");
+                player.Play();
+            }
 
-
-
-            return "bruh";
+            return Output;
         }
 
         private static string Format(object now, string v)
